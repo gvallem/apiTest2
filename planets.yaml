@@ -1,18 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Planets and Webhooks Demo API
-  version: 0.0.1
-  description: Simple flask-backed API showing some example API endpoints and with webhook debugging features.
-  contact:
-    name: Lorna Mitchell
-    url: https://github.com/lornajane/flask-planets-and-webhooks
-    email: github@lornajane.net
-servers:
-  - url: http://localhost:5000
-    description: Sample project running locally
-externalDocs:
-  description: GitHub project for the code and information about this API
-  url: https://github.com/lornajane/flask-planets-and-webhooks
+  version: v1
+  title: Planets
+  description: Planets
 paths:
   /planets:
     get:
@@ -32,7 +22,7 @@ paths:
                   $ref: "#/components/schemas/planet"
               examples: 
                 example1: 
-                  $ref: '#/components/examples/Planets'    
+                  $ref: '#/components/examples/Planets'
 
   /planets/{planetId}:
     get:
@@ -96,3 +86,7 @@ components:
 tags:
   - name: planets
     description: API containing solar system data
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/gvalle/Planets/v1
