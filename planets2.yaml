@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  version: v1
+  title: Planets
+  description: Planets
+paths:
+  /planets:
+    get:
+      operationId: allPlanets
+      summary: List all planets
+      description: Returns a list of all the planets that are stored in the system.
+      tags:
+        - planets
+      responses:
+        '200':
+          description: Planets in a list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/planet"
+              examples: 
+                example1: 
+                  $ref: '#/components/examples/Planets'
+
+  /planets/{planetId}:
+    get:
+      operationId: onePlanet
+      summary: Fetch one planet by position
+      description: Get the data relating to one planet
+      tags:
+        - planets
+      parameters:
+      - name: planetId
+        in: path
+        required: true
+        schema:
+          type: number
+          example: 4
+
+      responses:
+        '200':
+          description: Planets in a list
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/planet"
+              examples: 
+                example1: 
+                  $ref: '#/components/examples/Planet'
+
+components:
+  examples:
+    Planet:
+      value:
+        name: Saturn
+        position: 6
+        moons: 62
+    Planets:
+      value: 
+        - name: Mars
+          position: 12
+          moons: 1
+        - name: Venus
+          position: 10
+          moons: 1
+  schemas:
+    planet:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of planet
+          example: "Saturn"
+        position:
+          type: number
+          description: Order in place from the sun
+          example: 6
+        moons:
+          type: number
+          description: Number of moons, according to NASA
+          example: 62
+
+
+tags:
+  - name: planets
+    description: API containing solar system data
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/gvalle/Planets/v1
